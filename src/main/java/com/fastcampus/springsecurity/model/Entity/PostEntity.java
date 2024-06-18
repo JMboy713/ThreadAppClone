@@ -29,7 +29,7 @@ public class PostEntity{
     return postId;
     }
 
-    public void setPostId(Long) postId) {
+    public void setPostId(Long postId) {
     this.postId = postId;
 }
 
