@@ -6,6 +6,7 @@ import org.hibernate.annotations.SQLRestriction;
 
 import java.time.ZonedDateTime;
 import java.util.Objects;
+import java.util.Random;
 
 @Entity
 @Table(name = "post")
@@ -79,4 +80,5 @@ public class PostEntity{
     public int hashCode() {
         return Objects.hash(postId, body, createdDateTime, updatedDateTime, deletedDateTime);
     }
+
 }

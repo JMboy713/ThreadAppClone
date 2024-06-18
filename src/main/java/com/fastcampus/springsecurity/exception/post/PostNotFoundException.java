@@ -1,8 +1,9 @@
-package com.fastcampus.springsecurity.exception;
+package com.fastcampus.springsecurity.exception.post;
 
+import com.fastcampus.springsecurity.exception.ClientErrorException;
 import org.springframework.http.HttpStatus;
 
-public class PostNotFoundException extends ClientErrorException{
+public class PostNotFoundException extends ClientErrorException {
     public PostNotFoundException(String message) {
         super( HttpStatus.NOT_FOUND,message);
     }

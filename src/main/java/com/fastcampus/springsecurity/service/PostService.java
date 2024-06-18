@@ -1,12 +1,10 @@
 package com.fastcampus.springsecurity.service;
 
-import com.fastcampus.springsecurity.exception.PostNotFoundException;
+import com.fastcampus.springsecurity.exception.post.PostNotFoundException;
 import com.fastcampus.springsecurity.model.Post;
 import com.fastcampus.springsecurity.model.PostPatchRequestBody;
 import com.fastcampus.springsecurity.model.PostPostRequestBody;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
