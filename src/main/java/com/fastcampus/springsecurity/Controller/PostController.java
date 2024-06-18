@@ -1,6 +1,7 @@
 package com.fastcampus.springsecurity.Controller;
 
 import com.fastcampus.springsecurity.model.Post;
+import com.fastcampus.springsecurity.model.PostPatchRequestBody;
 import com.fastcampus.springsecurity.model.PostPostRequestBody;
 import com.fastcampus.springsecurity.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,22 @@ public class PostController {
     @PostMapping
     public ResponseEntity<Post> createPost(@RequestBody PostPostRequestBody postPostRequestBody) {
         var post = postService.createPost(postPostRequestBody); // 타입추론이 가능할 경우 사용 var ( java 10 )
+        return ResponseEntity.ok(post); // 201은 바디에 값을 넣어서 보내지 못한다.
+    }
+
+    @PatchMapping("/{postId}")
+    public ResponseEntity<Post> updatePost(@PathVariable Long postId,@RequestBody PostPatchRequestBody postPatchRequestBody) {
+        var post = postService.updatePost(postId, postPatchRequestBody);
         return ResponseEntity.ok(post);
     }
+
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<Void> deletePost(
+            @PathVariable Long postId) {
+        postService.deletePost(postId);
+        return ResponseEntity.noContent().build();
+    }
+
 
 
 }

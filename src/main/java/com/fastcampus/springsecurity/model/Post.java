@@ -5,9 +5,9 @@ import jakarta.persistence.Entity;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
-//public record Post(Long postId,String body)
-
+//public record Post(Long postId,String body,ZonedDateTime createdDateTime) { }
 //@Entity
+//
 public class Post {
     private Long postId;
     private String body;

@@ -1,8 +1,11 @@
 package com.fastcampus.springsecurity.service;
 
 import com.fastcampus.springsecurity.model.Post;
+import com.fastcampus.springsecurity.model.PostPatchRequestBody;
 import com.fastcampus.springsecurity.model.PostPostRequestBody;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -28,10 +31,31 @@ public class PostService {
 
 
     public Post createPost(PostPostRequestBody postPostRequestBody) {
-        long newPostId = posts.stream().mapToLong(Post::getPostId).max().orElse(0L) + 1;
-        Post newPost = new Post(newPostId, postPostRequestBody.body(), ZonedDateTime.now());
+        var newPostId = posts.stream().mapToLong(Post::getPostId).max().orElse(0L) + 1;
+        var newPost = new Post(newPostId, postPostRequestBody.body(), ZonedDateTime.now());
         posts.add(newPost);
 
         return newPost;
+    }
+
+    public Post updatePost(Long postId, PostPatchRequestBody postPatchRequestBody) {
+        Optional<Post> postOptional = posts.stream().filter(post -> post.getPostId().equals(postId)).findFirst();
+        if(postOptional.isPresent()){
+            Post postToUpdate = postOptional.get();
+            postToUpdate.setBody(postPatchRequestBody.body());
+            return postToUpdate;
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Post Not Found");// 원하는 http status code를 던질 수 있음
+        }
+
+    }
+
+    public void deletePost(Long postId) {
+        Optional<Post> postOptional = posts.stream().filter(post -> post.getPostId().equals(postId)).findFirst();
+        if(postOptional.isPresent()) {
+            posts.remove(postOptional.get());
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Post Not Found");// 원하는 http status code를 던질 수 있음
+        }
     }
 }
