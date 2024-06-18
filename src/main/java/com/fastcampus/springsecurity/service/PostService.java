@@ -1,5 +1,6 @@
 package com.fastcampus.springsecurity.service;
 
+import com.fastcampus.springsecurity.exception.PostNotFoundException;
 import com.fastcampus.springsecurity.model.Post;
 import com.fastcampus.springsecurity.model.PostPatchRequestBody;
 import com.fastcampus.springsecurity.model.PostPostRequestBody;
@@ -45,7 +46,8 @@ public class PostService {
             postToUpdate.setBody(postPatchRequestBody.body());
             return postToUpdate;
         }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Post Not Found");// 원하는 http status code를 던질 수 있음
+            throw new PostNotFoundException(postId);// 원하는 http status code를 던질 수 있음
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Post Not Found");// 원하는 http status code를 던질 수 있음
         }
 
     }
@@ -55,7 +57,9 @@ public class PostService {
         if(postOptional.isPresent()) {
             posts.remove(postOptional.get());
         }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Post Not Found");// 원하는 http status code를 던질 수 있음
+            throw new PostNotFoundException(postId);// 원하는 http status code를 던질 수 있음
+
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Post Not Found");// 원하는 http status code를 던질 수 있음
         }
     }
 }

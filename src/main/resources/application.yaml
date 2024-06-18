@@ -17,7 +17,7 @@ spring:
     password: board-postgres-password
   logging:
     level:
-      org.hibernate.type: TRACE
+      root: INFO
   security:
     user.name: board-admin
     user:
