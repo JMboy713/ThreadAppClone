@@ -30,7 +30,7 @@ public class UserEntity implements UserDetails {
     @Column
     private String profile;
     @Column
-    private String descprtion;
+    private String description;
     @Column
     private ZonedDateTime createdDateTime;
     @Column
@@ -43,12 +43,12 @@ public class UserEntity implements UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
-        return Objects.equals(userId, that.userId) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && Objects.equals(profile, that.profile) && Objects.equals(descprtion, that.descprtion) && Objects.equals(createdDateTime, that.createdDateTime) && Objects.equals(updatedDateTime, that.updatedDateTime) && Objects.equals(deletedDateTime, that.deletedDateTime);
+        return Objects.equals(userId, that.userId) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && Objects.equals(profile, that.profile) && Objects.equals(description, that.description) && Objects.equals(createdDateTime, that.createdDateTime) && Objects.equals(updatedDateTime, that.updatedDateTime) && Objects.equals(deletedDateTime, that.deletedDateTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, username, password, profile, descprtion, createdDateTime, updatedDateTime, deletedDateTime);
+        return Objects.hash(userId, username, password, profile, description, createdDateTime, updatedDateTime, deletedDateTime);
     }
 
     public Long getUserId() {
@@ -75,12 +75,12 @@ public class UserEntity implements UserDetails {
         this.profile = profile;
     }
 
-    public String getDescprtion() {
-        return descprtion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescprtion(String descprtion) {
-        this.descprtion = descprtion;
+    public void setDescription(String descprtion) {
+        this.description = descprtion;
     }
 
     public ZonedDateTime getCreatedDateTime() {

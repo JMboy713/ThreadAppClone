@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { // 한번만
         var authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
         var securityContext = SecurityContextHolder.getContext(); // 인증정보 저장소
 
-        if(ObjectUtils.isEmpty(authorization)&&authorization.startsWith(BEARER_PREFIX)&&
+        if(ObjectUtils.isEmpty(authorization) && authorization.startsWith(BEARER_PREFIX)&&
         securityContext.getAuthentication()==null) {
             var accessToken = authorization.substring(BEARER_PREFIX.length());// accessToken 값 추출
             String username = jwtService.getUsername(accessToken);// jwt token에서 username 추출
